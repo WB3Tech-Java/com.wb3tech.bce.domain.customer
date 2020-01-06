@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wb3tech.bce</groupId>
+    <artifactId>domain.customer</artifactId>
+    <version>0.1.0</version>
+
+    <properties>
+        <java.version>13</java.version>
+        <junit.jupiter.version>5.6.0-M1</junit.jupiter.version>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M4</maven.surefire.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <wb3tech.kernel.version>0.1.0</wb3tech.kernel.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.wb3tech</groupId>
+            <artifactId>kernel</artifactId>
+            <version>${wb3tech.kernel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>WB3Tech - Java Kernel - Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/WB3Tech-Java/com.wb3tech.bce.domain.customer</url>
+        </repository>
+    </distributionManagement>
+
+
+</project>
