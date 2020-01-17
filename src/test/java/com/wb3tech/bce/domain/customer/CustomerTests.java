@@ -25,7 +25,7 @@ class CustomerTests {
     void CreateCustomer() {
 
         var request = new CreateCustomerRequest("Bill", "Bensing");
-        var handler = new CreateCustomerUseCaseRequestHandler(this.gateway);
+        var handler = new CreateCustomerRequestHandler(this.gateway);
 
         handler.Handle(request);
 
@@ -46,7 +46,7 @@ class CustomerTests {
     void UpdateCustomer() {
 
         var request = new UpdateCustomerRequest(UUID.fromString("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49"), "Billy", "Bensing III");
-        var handler = new UpdateCustomerUseCaseRequestHandler(this.gateway);
+        var handler = new UpdateCustomerRequestHandler(this.gateway);
 
         handler.Handle(request);
 
@@ -69,7 +69,7 @@ class CustomerTests {
 
         var id = UUID.fromString("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49");
         var request = new RemoveCustomerRequest(id);
-        var handler = new RemoveCustomerUseCaseRequestHandler(this.gateway);
+        var handler = new RemoveCustomerRequestHandler(this.gateway);
 
         handler.Handle(request);
 

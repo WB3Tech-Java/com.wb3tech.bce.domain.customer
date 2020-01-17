@@ -2,11 +2,11 @@ package com.wb3tech.bce.domain.customer;
 
 import com.wb3tech.kernel.RequestHandler;
 
-public class UpdateCustomerUseCaseRequestHandler implements RequestHandler<UpdateCustomerRequest> {
+public class UpdateCustomerRequestHandler implements RequestHandler<UpdateCustomerRequest> {
 
     private final CustomerGateway gateway;
 
-    public UpdateCustomerUseCaseRequestHandler(CustomerGateway gateway) {
+    public UpdateCustomerRequestHandler(CustomerGateway gateway) {
         this.gateway = gateway;
     }
 
