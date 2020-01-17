@@ -13,7 +13,9 @@ public class UpdateCustomerRequestHandler implements RequestHandler<UpdateCustom
 
     @Override
     public void Handle(UpdateCustomerRequest updateCustomerRequest) {
-        new UpdateCustomerUseCase(updateCustomerRequest, this.gateway).execute();
+        var usecase = new UpdateCustomerUseCase(updateCustomerRequest);
+        usecase.execute();
+        this.gateway.Update(usecase.getCustomer());
     }
 
 
