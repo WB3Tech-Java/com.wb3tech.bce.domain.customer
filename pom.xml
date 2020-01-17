@@ -17,7 +17,7 @@
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.0.0-M4</maven.surefire.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <wb3tech.kernel.version>0.1.0</wb3tech.kernel.version>
+        <wb3tech.kernel.version>0.3.0</wb3tech.kernel.version>
     </properties>
 
     <dependencies>
