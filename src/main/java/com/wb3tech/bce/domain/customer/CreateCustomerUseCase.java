@@ -2,12 +2,12 @@ package com.wb3tech.bce.domain.customer;
 
 import com.wb3tech.kernel.UseCase;
 
-public class CreateCustomer implements UseCase {
+public class CreateCustomerUseCase implements UseCase {
 
     private CustomerRequest request;
     private CustomerGateway customerGateway;
 
-    CreateCustomer(CustomerRequest request, CustomerGateway customerGateway) {
+    CreateCustomerUseCase(CustomerRequest request, CustomerGateway customerGateway) {
         this.request = request;
         this.customerGateway = customerGateway;
     }

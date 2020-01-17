@@ -12,7 +12,7 @@ public class CreateCustomerRequestHandler implements RequestHandler<CreateCustom
 
     @Override
     public void Handle(CreateCustomerRequest createCustomerRequest) {
-        new CreateCustomer(createCustomerRequest, this.gateway).execute();
+        new CreateCustomerUseCase(createCustomerRequest, this.gateway).execute();
     }
 
 }

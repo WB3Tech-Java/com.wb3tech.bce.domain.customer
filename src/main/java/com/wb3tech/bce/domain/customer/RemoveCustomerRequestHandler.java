@@ -12,6 +12,6 @@ public class RemoveCustomerRequestHandler implements RequestHandler<RemoveCustom
 
     @Override
     public void Handle(RemoveCustomerRequest removeCustomerRequest) {
-        new RemoveCustomer(removeCustomerRequest, this.gateway).execute();
+        new RemoveCustomerUseCase(removeCustomerRequest, this.gateway).execute();
     }
 }

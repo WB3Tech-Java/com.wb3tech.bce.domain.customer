@@ -12,7 +12,7 @@ public class UpdateCustomerRequestHandler implements RequestHandler<UpdateCustom
 
     @Override
     public void Handle(UpdateCustomerRequest updateCustomerRequest) {
-        new UpdateCustomer(updateCustomerRequest, this.gateway).execute();
+        new UpdateCustomerUseCase(updateCustomerRequest, this.gateway).execute();
     }
 
 

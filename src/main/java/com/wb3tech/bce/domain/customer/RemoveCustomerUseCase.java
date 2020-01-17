@@ -2,12 +2,12 @@ package com.wb3tech.bce.domain.customer;
 
 import com.wb3tech.kernel.UseCase;
 
-public class RemoveCustomer implements UseCase {
+public class RemoveCustomerUseCase implements UseCase {
 
     private final RemoveCustomerRequest request;
     private final CustomerGateway gateway;
 
-    public RemoveCustomer(RemoveCustomerRequest removeCustomerRequest, CustomerGateway gateway) {
+    public RemoveCustomerUseCase(RemoveCustomerRequest removeCustomerRequest, CustomerGateway gateway) {
         this.request = removeCustomerRequest;
         this.gateway = gateway;
     }
