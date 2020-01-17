@@ -1,5 +1,8 @@
-package com.wb3tech.bce.domain.customer;
+package com.wb3tech.bce.domain.customer.update;
 
+import com.wb3tech.bce.domain.customer.Customer;
+import com.wb3tech.bce.domain.customer.CustomerGateway;
+import com.wb3tech.bce.domain.customer.CustomerRequest;
 import com.wb3tech.kernel.UseCase;
 
 class UpdateCustomerUseCase implements UseCase {
@@ -13,7 +16,7 @@ class UpdateCustomerUseCase implements UseCase {
     }
 
     public void execute() {
-        var customer = new Customer(this.request);
+        var customer = Customer.Of(this.request);
         this.gateway.Update(customer);
     }
 }

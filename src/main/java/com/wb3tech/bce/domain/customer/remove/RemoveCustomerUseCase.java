@@ -1,5 +1,7 @@
-package com.wb3tech.bce.domain.customer;
+package com.wb3tech.bce.domain.customer.remove;
 
+import com.wb3tech.bce.domain.customer.Customer;
+import com.wb3tech.bce.domain.customer.CustomerGateway;
 import com.wb3tech.kernel.UseCase;
 
 public class RemoveCustomerUseCase implements UseCase {
@@ -14,7 +16,7 @@ public class RemoveCustomerUseCase implements UseCase {
 
     @Override
     public void execute() {
-        var customer = new Customer(request);
+        var customer = Customer.Of(request);
         this.gateway.Remove(customer);
     }
 }

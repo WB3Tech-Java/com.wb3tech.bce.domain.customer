@@ -4,22 +4,34 @@ import com.wb3tech.kernel.Entity;
 import com.wb3tech.kernel.Identity;
 import com.wb3tech.kernel.valueobject.Person;
 
-class Customer extends Entity implements CustomerEntity   {
+public class Customer extends Entity implements CustomerEntity   {
 
     private Person person;
 
-    Customer(String firstName, String lastName) {
+    private Customer(String firstName, String lastName) {
         this.setPerson(firstName, lastName);
         this.assignNewIdentity();
     }
 
-    Customer(Identity identity, String firstName, String lastName) {
+    private Customer(Identity identity, String firstName, String lastName) {
         this(firstName, lastName);
         this.setId(identity);
     }
 
-    Customer(CustomerRequest request) {
+    private Customer(CustomerRequest request) {
         this(Identity.New(request.getId()), request.getFirstName(), request.getLastName());
+    }
+
+    public static Customer Of(CustomerRequest request) {
+        return new Customer(request);
+    }
+
+    public static Customer Of(String firstName, String lastName) {
+        return new Customer(firstName, lastName);
+    }
+
+    public static Customer Of(Identity identity, String firstName, String lastName) {
+        return new Customer(identity, firstName, lastName);
     }
 
     public String getFirstName() {
@@ -36,6 +48,7 @@ class Customer extends Entity implements CustomerEntity   {
         var lastName = this.person.getSurname().equals(entity.getLastName());
         return id && firstName && lastName;
     }
+
 
     private void setPerson(String firstName, String lastName) {
         this.person = Person.Of(firstName, lastName);

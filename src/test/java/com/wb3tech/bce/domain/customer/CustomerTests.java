@@ -1,5 +1,11 @@
 package com.wb3tech.bce.domain.customer;
 
+import com.wb3tech.bce.domain.customer.create.CreateCustomerRequest;
+import com.wb3tech.bce.domain.customer.create.CreateCustomerRequestHandler;
+import com.wb3tech.bce.domain.customer.remove.RemoveCustomerRequest;
+import com.wb3tech.bce.domain.customer.remove.RemoveCustomerRequestHandler;
+import com.wb3tech.bce.domain.customer.update.UpdateCustomerRequest;
+import com.wb3tech.bce.domain.customer.update.UpdateCustomerRequestHandler;
 import org.junit.jupiter.api.*;
 
 import java.util.UUID;

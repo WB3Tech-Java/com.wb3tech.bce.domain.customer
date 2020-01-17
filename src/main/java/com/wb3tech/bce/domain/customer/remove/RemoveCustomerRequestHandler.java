@@ -1,5 +1,6 @@
-package com.wb3tech.bce.domain.customer;
+package com.wb3tech.bce.domain.customer.remove;
 
+import com.wb3tech.bce.domain.customer.CustomerGateway;
 import com.wb3tech.kernel.RequestHandler;
 
 public class RemoveCustomerRequestHandler implements RequestHandler<RemoveCustomerRequest> {

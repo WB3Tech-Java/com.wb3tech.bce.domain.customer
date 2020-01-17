@@ -1,5 +1,8 @@
-package com.wb3tech.bce.domain.customer;
+package com.wb3tech.bce.domain.customer.create;
 
+import com.wb3tech.bce.domain.customer.Customer;
+import com.wb3tech.bce.domain.customer.CustomerGateway;
+import com.wb3tech.bce.domain.customer.CustomerRequest;
 import com.wb3tech.kernel.UseCase;
 
 public class CreateCustomerUseCase implements UseCase {
@@ -13,7 +16,7 @@ public class CreateCustomerUseCase implements UseCase {
     }
 
     public void execute() {
-        var customer = new Customer(this.request.getFirstName(), this.request.getLastName());
+        var customer = Customer.Of(this.request.getFirstName(), this.request.getLastName());
         this.customerGateway.Create(customer);
         this.request.setId(customer.getId().value());
     }

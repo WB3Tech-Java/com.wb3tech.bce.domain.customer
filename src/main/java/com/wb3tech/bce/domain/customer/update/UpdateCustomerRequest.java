@@ -1,4 +1,6 @@
-package com.wb3tech.bce.domain.customer;
+package com.wb3tech.bce.domain.customer.update;
+
+import com.wb3tech.bce.domain.customer.CustomerRequest;
 
 import java.util.UUID;
 
