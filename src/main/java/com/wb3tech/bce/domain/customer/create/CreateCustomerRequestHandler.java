@@ -13,9 +13,9 @@ public class CreateCustomerRequestHandler implements RequestHandler<CreateCustom
 
     @Override
     public void Handle(CreateCustomerRequest createCustomerRequest) {
-        var newCustomer = new CreateCustomerUseCase(createCustomerRequest);
-        newCustomer.execute();
-        this.gateway.Create(newCustomer.getCustomer());
+        var usecase = new CreateCustomerUseCase(createCustomerRequest);
+        usecase.execute();
+        this.gateway.Create(usecase.getCustomer());
     }
 
 }
