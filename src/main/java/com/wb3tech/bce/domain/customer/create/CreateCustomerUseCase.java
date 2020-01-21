@@ -1,25 +1,21 @@
 package com.wb3tech.bce.domain.customer.create;
 
 import com.wb3tech.bce.domain.customer.Customer;
-import com.wb3tech.bce.domain.customer.CustomerRequest;
-import com.wb3tech.kernel.UseCase;
+import com.wb3tech.bce.domain.customer.CustomerGateway;
+import com.wb3tech.kernel.conroller.CommandUseCase;
 
-public class CreateCustomerUseCase implements UseCase {
+public class CreateCustomerUseCase implements CommandUseCase<CreateCustomerRequest> {
 
-    private CustomerRequest request;
-    private Customer customer;
+    private CustomerGateway gateway;
 
-    CreateCustomerUseCase(CustomerRequest request) {
-        this.request = request;
+    public CreateCustomerUseCase(CustomerGateway gateway) {
+        this.gateway = gateway;
     }
 
-    public void execute() {
-        this.customer = Customer.Of(this.request.getFirstName(), this.request.getLastName());
-        this.request.setId(customer.getId().value());
-    }
-
-    public Customer getCustomer() {
-        return this.customer;
+    public void execute(CreateCustomerRequest request) {
+        var customer = Customer.Of(request.getFirstName(), request.getLastName());
+        this.gateway.Create(customer);
+        request.setId(customer.getId().value());
     }
 
 }

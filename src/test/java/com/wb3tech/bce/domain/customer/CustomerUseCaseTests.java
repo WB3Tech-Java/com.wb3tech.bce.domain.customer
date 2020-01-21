@@ -1,17 +1,17 @@
 package com.wb3tech.bce.domain.customer;
 
 import com.wb3tech.bce.domain.customer.create.CreateCustomerRequest;
-import com.wb3tech.bce.domain.customer.create.CreateCustomerRequestHandler;
+import com.wb3tech.bce.domain.customer.create.CreateCustomerUseCase;
 import com.wb3tech.bce.domain.customer.remove.RemoveCustomerRequest;
-import com.wb3tech.bce.domain.customer.remove.RemoveCustomerRequestHandler;
+import com.wb3tech.bce.domain.customer.remove.RemoveCustomerUseCase;
 import com.wb3tech.bce.domain.customer.update.UpdateCustomerRequest;
-import com.wb3tech.bce.domain.customer.update.UpdateCustomerRequestHandler;
+import com.wb3tech.bce.domain.customer.update.UpdateCustomerUseCase;
 import org.junit.jupiter.api.*;
 
 import java.util.UUID;
 
 @DisplayName("Customer Use Cases")
-class CustomerTests {
+class CustomerUseCaseTests {
 
     private CustomerGatewaySpy gateway;
 
@@ -31,9 +31,9 @@ class CustomerTests {
     void CreateCustomer() {
 
         var request = new CreateCustomerRequest("Bill", "Bensing");
-        var handler = new CreateCustomerRequestHandler(this.gateway);
+        var usecase = new CreateCustomerUseCase(this.gateway);
 
-        handler.Handle(request);
+        usecase.execute(request);
 
         Assertions.assertNotNull(request.getId());
         Assertions.assertEquals("Bill", request.getFirstName());
@@ -52,9 +52,9 @@ class CustomerTests {
     void UpdateCustomer() {
 
         var request = new UpdateCustomerRequest(UUID.fromString("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49"), "Billy", "Bensing III");
-        var handler = new UpdateCustomerRequestHandler(this.gateway);
+        var usecase = new UpdateCustomerUseCase(this.gateway);
 
-        handler.Handle(request);
+        usecase.execute(request);
 
         Assertions.assertEquals("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49", request.getId().toString());
         Assertions.assertEquals("Billy", request.getFirstName());
@@ -75,9 +75,9 @@ class CustomerTests {
 
         var id = UUID.fromString("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49");
         var request = new RemoveCustomerRequest(id);
-        var handler = new RemoveCustomerRequestHandler(this.gateway);
+        var usecase = new RemoveCustomerUseCase(this.gateway);
 
-        handler.Handle(request);
+        usecase.execute(request);
 
         Assertions.assertTrue(this.gateway.RemoveWasCalled());
 

@@ -1,24 +1,19 @@
 package com.wb3tech.bce.domain.customer.update;
 
 import com.wb3tech.bce.domain.customer.Customer;
-import com.wb3tech.bce.domain.customer.CustomerRequest;
-import com.wb3tech.kernel.UseCase;
+import com.wb3tech.bce.domain.customer.CustomerGateway;
+import com.wb3tech.kernel.conroller.CommandUseCase;
 
-class UpdateCustomerUseCase implements UseCase {
+public class UpdateCustomerUseCase implements CommandUseCase<UpdateCustomerRequest> {
 
-    private final CustomerRequest request;
-    private Customer customer;
+    private final CustomerGateway gateway;
 
-    UpdateCustomerUseCase(CustomerRequest request) {
-        this.request = request;
+    public UpdateCustomerUseCase(CustomerGateway gateway) {
+        this.gateway = gateway;
     }
 
-    public void execute() {
-        this.customer = Customer.Of(this.request);
+    public void execute(UpdateCustomerRequest request) {
+        var customer = Customer.Of(request);
+        this.gateway.Update(customer);
     }
-
-    public Customer getCustomer() {
-        return this.customer;
-    }
-
 }

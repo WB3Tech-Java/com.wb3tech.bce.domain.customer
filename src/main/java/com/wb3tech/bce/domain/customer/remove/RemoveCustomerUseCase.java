@@ -2,23 +2,20 @@ package com.wb3tech.bce.domain.customer.remove;
 
 import com.wb3tech.bce.domain.customer.Customer;
 import com.wb3tech.bce.domain.customer.CustomerGateway;
-import com.wb3tech.kernel.UseCase;
+import com.wb3tech.kernel.conroller.CommandUseCase;
 
-public class RemoveCustomerUseCase implements UseCase {
+public class RemoveCustomerUseCase implements CommandUseCase<RemoveCustomerRequest> {
 
-    private final RemoveCustomerRequest request;
-    private Customer customer;
+    private CustomerGateway gateway;
 
-    public RemoveCustomerUseCase(RemoveCustomerRequest removeCustomerRequest) {
-        this.request = removeCustomerRequest;
+    public RemoveCustomerUseCase(CustomerGateway gateway) {
+        this.gateway = gateway;
     }
 
     @Override
-    public void execute() {
-        this.customer = Customer.Of(request);
+    public void execute(RemoveCustomerRequest request) {
+        var customer = Customer.Of(request);
+        this.gateway.Remove(customer);
     }
 
-    public Customer getCustomer() {
-        return this.customer;
-    }
 }

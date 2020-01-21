@@ -1,6 +1,6 @@
 package com.wb3tech.bce.domain.customer;
 
-import com.wb3tech.kernel.Identity;
+import com.wb3tech.kernel.entity.Identity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

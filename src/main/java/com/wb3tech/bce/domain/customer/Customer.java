@@ -1,7 +1,8 @@
 package com.wb3tech.bce.domain.customer;
 
-import com.wb3tech.kernel.Entity;
-import com.wb3tech.kernel.Identity;
+
+import com.wb3tech.kernel.entity.Entity;
+import com.wb3tech.kernel.entity.Identity;
 import com.wb3tech.kernel.valueobject.Person;
 
 public class Customer extends Entity implements CustomerEntity   {
