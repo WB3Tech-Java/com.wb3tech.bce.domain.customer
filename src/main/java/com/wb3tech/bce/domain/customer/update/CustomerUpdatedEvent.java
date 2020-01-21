@@ -16,7 +16,7 @@ public class CustomerUpdatedEvent {
         this.lastName = lastName;
     }
 
-    public static CustomerUpdatedEvent Of(CustomerEntity entity) {
+    public static CustomerUpdatedEvent of(CustomerEntity entity) {
         return new CustomerUpdatedEvent(entity.getId().value(), entity.getFirstName(), entity.getLastName());
     }
 

@@ -26,15 +26,15 @@ public class Customer extends Entity implements CustomerEntity   {
 
     }
 
-    public static Customer Of(UUID id) {
+    public static Customer of(UUID id) {
         return new Customer(id);
     }
 
-    public static Customer Of(String firstName, String lastName) {
+    public static Customer of(String firstName, String lastName) {
         return new Customer(firstName, lastName);
     }
 
-    public static Customer Of(Identity identity, String firstName, String lastName) {
+    public static Customer of(Identity identity, String firstName, String lastName) {
         return new Customer(identity, firstName, lastName);
     }
 

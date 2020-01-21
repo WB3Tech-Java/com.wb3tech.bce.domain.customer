@@ -15,9 +15,9 @@ public class CreateCustomerUseCase implements CommandUseCase<CreateCustomerReque
     }
 
     public void execute(CreateCustomerRequest request) {
-        var customer = Customer.Of(request.getFirstName(), request.getLastName());
+        var customer = Customer.of(request.getFirstName(), request.getLastName());
         this.gateway.Create(customer);
-        this.eventDispatcher.Dispatch(CustomerCreatedEvent.Of(customer));
+        this.eventDispatcher.Dispatch(CustomerCreatedEvent.of(customer));
         request.setId(customer.getId().value());
     }
 

@@ -16,7 +16,7 @@ public class CustomerCreatedEvent {
         this.lastName = lastName;
     }
 
-    public static CustomerCreatedEvent Of(Customer customer) {
+    public static CustomerCreatedEvent of(Customer customer) {
         return new CustomerCreatedEvent(customer.getId().value(), customer.getFirstName(), customer.getLastName());
     }
 

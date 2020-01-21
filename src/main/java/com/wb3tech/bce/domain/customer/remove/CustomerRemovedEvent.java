@@ -12,7 +12,7 @@ public class CustomerRemovedEvent {
         this.id = id;
     }
 
-    public static CustomerRemovedEvent Of(CustomerEntity entity) {
+    public static CustomerRemovedEvent of(CustomerEntity entity) {
         return new CustomerRemovedEvent(entity.getId().value());
     }
 

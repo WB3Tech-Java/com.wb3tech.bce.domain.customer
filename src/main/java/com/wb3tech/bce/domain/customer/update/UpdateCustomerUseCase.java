@@ -16,9 +16,9 @@ public class UpdateCustomerUseCase implements CommandUseCase<UpdateCustomerReque
     }
 
     public void execute(UpdateCustomerRequest request) {
-        var customer = Customer.Of(Identity.New(request.getId()), request.getFirstName(), request.getLastName());
+        var customer = Customer.of(Identity.New(request.getId()), request.getFirstName(), request.getLastName());
         this.gateway.Update(customer);
-        this.eventDispatcher.Dispatch(CustomerUpdatedEvent.Of(customer));
+        this.eventDispatcher.Dispatch(CustomerUpdatedEvent.of(customer));
     }
 
 }
