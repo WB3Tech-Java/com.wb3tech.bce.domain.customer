@@ -1,5 +1,7 @@
 package com.wb3tech.bce.domain.customer;
 
+import com.wb3tech.kernel.entity.Identifiable;
+
 class CustomerGatewaySpy implements CustomerGateway {
 
     private boolean createWasCalled;
@@ -24,7 +26,7 @@ class CustomerGatewaySpy implements CustomerGateway {
         this.updateWasCalled = true;
     }
 
-    public void Remove(CustomerEntity customer) {
+    public void Remove(Identifiable identifiable) {
         this.removeWasCalled = true;
     }
 }

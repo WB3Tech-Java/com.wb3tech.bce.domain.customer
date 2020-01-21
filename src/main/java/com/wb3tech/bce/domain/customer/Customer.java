@@ -5,6 +5,8 @@ import com.wb3tech.kernel.entity.Entity;
 import com.wb3tech.kernel.entity.Identity;
 import com.wb3tech.kernel.valueobject.Person;
 
+import java.util.UUID;
+
 public class Customer extends Entity implements CustomerEntity   {
 
     private Person person;
@@ -19,12 +21,13 @@ public class Customer extends Entity implements CustomerEntity   {
         this.setId(identity);
     }
 
-    private Customer(CustomerRequest request) {
-        this(Identity.New(request.getId()), request.getFirstName(), request.getLastName());
+    private Customer(UUID id) {
+        this(Identity.New(id), "", "");
+
     }
 
-    public static Customer Of(CustomerRequest request) {
-        return new Customer(request);
+    public static Customer Of(UUID id) {
+        return new Customer(id);
     }
 
     public static Customer Of(String firstName, String lastName) {
@@ -53,5 +56,6 @@ public class Customer extends Entity implements CustomerEntity   {
     private void setPerson(String firstName, String lastName) {
         this.person = Person.Of(firstName, lastName);
     }
+
 
 }

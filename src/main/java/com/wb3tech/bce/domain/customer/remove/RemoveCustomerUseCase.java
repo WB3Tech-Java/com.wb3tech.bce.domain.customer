@@ -14,7 +14,7 @@ public class RemoveCustomerUseCase implements CommandUseCase<RemoveCustomerReque
 
     @Override
     public void execute(RemoveCustomerRequest request) {
-        var customer = Customer.Of(request);
+        var customer = Customer.Of(request.getId());
         this.gateway.Remove(customer);
     }
 

@@ -3,6 +3,7 @@ package com.wb3tech.bce.domain.customer.update;
 import com.wb3tech.bce.domain.customer.Customer;
 import com.wb3tech.bce.domain.customer.CustomerGateway;
 import com.wb3tech.kernel.conroller.CommandUseCase;
+import com.wb3tech.kernel.entity.Identity;
 
 public class UpdateCustomerUseCase implements CommandUseCase<UpdateCustomerRequest> {
 
@@ -13,7 +14,8 @@ public class UpdateCustomerUseCase implements CommandUseCase<UpdateCustomerReque
     }
 
     public void execute(UpdateCustomerRequest request) {
-        var customer = Customer.Of(request);
+        var customer = Customer.Of(Identity.New(request.getId()), request.getFirstName(), request.getLastName());
         this.gateway.Update(customer);
     }
+
 }

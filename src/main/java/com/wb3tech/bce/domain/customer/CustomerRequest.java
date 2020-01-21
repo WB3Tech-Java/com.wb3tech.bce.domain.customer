@@ -10,8 +10,6 @@ public abstract class CustomerRequest implements Request {
     private String firstName;
     private String lastName;
 
-    public CustomerRequest() { }
-
     public CustomerRequest(String fistName, String lastName) {
         this.firstName = fistName;
         this.lastName = lastName;

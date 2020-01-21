@@ -1,13 +1,19 @@
 package com.wb3tech.bce.domain.customer.remove;
-import com.wb3tech.bce.domain.customer.CustomerRequest;
+
+import com.wb3tech.kernel.boundary.Request;
 
 import java.util.UUID;
 
-public class RemoveCustomerRequest extends CustomerRequest {
+public class RemoveCustomerRequest implements Request {
 
-    public RemoveCustomerRequest(UUID uuid) {
-        super();
-        this.setId(uuid);
+    private final UUID id;
+
+    public RemoveCustomerRequest(UUID id) {
+        this.id = id;
+    }
+
+    public UUID getId() {
+        return UUID.fromString(this.id.toString());
     }
 
 }
