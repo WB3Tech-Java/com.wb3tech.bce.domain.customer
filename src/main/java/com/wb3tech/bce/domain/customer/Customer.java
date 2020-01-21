@@ -49,8 +49,8 @@ public class Customer extends Entity implements CustomerEntity   {
         return id && firstName && lastName;
     }
 
-
     private void setPerson(String firstName, String lastName) {
         this.person = Person.Of(firstName, lastName);
     }
+
 }
