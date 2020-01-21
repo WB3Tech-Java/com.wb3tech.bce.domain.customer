@@ -1,25 +1,41 @@
 package com.wb3tech.bce.domain.customer;
 
-import com.wb3tech.kernel.Entity;
-import com.wb3tech.kernel.Identity;
+
+import com.wb3tech.kernel.entity.Entity;
+import com.wb3tech.kernel.entity.Identity;
 import com.wb3tech.kernel.valueobject.Person;
 
-class Customer extends Entity implements CustomerEntity   {
+import java.util.UUID;
+
+public class Customer extends Entity implements CustomerEntity   {
 
     private Person person;
 
-    Customer(String firstName, String lastName) {
+    private Customer(String firstName, String lastName) {
         this.setPerson(firstName, lastName);
         this.assignNewIdentity();
     }
 
-    Customer(Identity identity, String firstName, String lastName) {
+    private Customer(Identity identity, String firstName, String lastName) {
         this(firstName, lastName);
         this.setId(identity);
     }
 
-    Customer(CustomerRequest request) {
-        this(Identity.New(request.getId()), request.getFirstName(), request.getLastName());
+    private Customer(UUID id) {
+        this(Identity.New(id), "", "");
+
+    }
+
+    public static Customer of(UUID id) {
+        return new Customer(id);
+    }
+
+    public static Customer of(String firstName, String lastName) {
+        return new Customer(firstName, lastName);
+    }
+
+    public static Customer of(Identity identity, String firstName, String lastName) {
+        return new Customer(identity, firstName, lastName);
     }
 
     public String getFirstName() {
@@ -40,4 +56,6 @@ class Customer extends Entity implements CustomerEntity   {
     private void setPerson(String firstName, String lastName) {
         this.person = Person.Of(firstName, lastName);
     }
+
+
 }
