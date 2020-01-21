@@ -7,14 +7,17 @@ import com.wb3tech.kernel.conroller.CommandUseCase;
 public class CreateCustomerUseCase implements CommandUseCase<CreateCustomerRequest> {
 
     private CustomerGateway gateway;
+    private CustomerCreatedEventDispatcher eventDispatcher;
 
-    public CreateCustomerUseCase(CustomerGateway gateway) {
+    public CreateCustomerUseCase(CustomerGateway gateway, CustomerCreatedEventDispatcher eventDispatcher) {
         this.gateway = gateway;
+        this.eventDispatcher = eventDispatcher;
     }
 
     public void execute(CreateCustomerRequest request) {
         var customer = Customer.Of(request.getFirstName(), request.getLastName());
         this.gateway.Create(customer);
+        this.eventDispatcher.Dispatch(CustomerCreatedEvent.Of(customer));
         request.setId(customer.getId().value());
     }
 

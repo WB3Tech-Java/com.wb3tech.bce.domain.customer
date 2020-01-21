@@ -2,6 +2,8 @@ package com.wb3tech.bce.domain.customer;
 
 import com.wb3tech.bce.domain.customer.create.CreateCustomerRequest;
 import com.wb3tech.bce.domain.customer.create.CreateCustomerUseCase;
+import com.wb3tech.bce.domain.customer.create.CustomerCreatedEvent;
+import com.wb3tech.bce.domain.customer.create.CustomerCreatedEventDispatcher;
 import com.wb3tech.bce.domain.customer.remove.RemoveCustomerRequest;
 import com.wb3tech.bce.domain.customer.remove.RemoveCustomerUseCase;
 import com.wb3tech.bce.domain.customer.update.UpdateCustomerRequest;
@@ -9,6 +11,8 @@ import com.wb3tech.bce.domain.customer.update.UpdateCustomerUseCase;
 import org.junit.jupiter.api.*;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Customer Use Cases")
 class CustomerUseCaseTests {
@@ -28,18 +32,29 @@ class CustomerUseCaseTests {
     //  and the first name shall be "Bill"
     //  and the last name shall be "Bensing"
     //  and the CustomerGateway.Create(...) must be invoked
+    //  and the CustomerCreatedEventDispatcher.Dispatch(...) must be invoked
     void CreateCustomer() {
 
+        var eventHandler = new CustomerCreatedEventHandlerSpy();
         var request = new CreateCustomerRequest("Bill", "Bensing");
-        var usecase = new CreateCustomerUseCase(this.gateway);
+        var usecase = new CreateCustomerUseCase(this.gateway, eventHandler);
 
         usecase.execute(request);
 
-        Assertions.assertNotNull(request.getId());
-        Assertions.assertEquals("Bill", request.getFirstName());
-        Assertions.assertEquals("Bensing", request.getLastName());
-        Assertions.assertTrue(this.gateway.CreateWasCalled());
+        assertNotNull(request.getId());
+        assertEquals("Bill", request.getFirstName());
+        assertEquals("Bensing", request.getLastName());
+        assertTrue(this.gateway.CreateWasCalled());
+        assertTrue(eventHandler.CustomerCreatedEventWasHandled());
+
+        var handledEvent = eventHandler.getDispatchedEvent();
+
+        assertEquals(request.getId(), handledEvent.getId());
+        assertEquals(request.getFirstName(), handledEvent.getFirstName());
+        assertEquals(request.getLastName(), handledEvent.getLastName());
+
     }
+
 
     @Test @Tag("Medium") @DisplayName("Update Customer")
     // Given the need to update an existing customer
@@ -56,10 +71,10 @@ class CustomerUseCaseTests {
 
         usecase.execute(request);
 
-        Assertions.assertEquals("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49", request.getId().toString());
-        Assertions.assertEquals("Billy", request.getFirstName());
-        Assertions.assertEquals("Bensing III", request.getLastName());
-        Assertions.assertTrue(this.gateway.UpdateWasCalled());
+        assertEquals("bbe2ee9e-dda1-4d24-92c2-91e35ea55a49", request.getId().toString());
+        assertEquals("Billy", request.getFirstName());
+        assertEquals("Bensing III", request.getLastName());
+        assertTrue(this.gateway.UpdateWasCalled());
 
     }
 
@@ -79,7 +94,29 @@ class CustomerUseCaseTests {
 
         usecase.execute(request);
 
-        Assertions.assertTrue(this.gateway.RemoveWasCalled());
+        assertTrue(this.gateway.RemoveWasCalled());
+
+    }
+
+    private class CustomerCreatedEventHandlerSpy implements CustomerCreatedEventDispatcher {
+
+        private boolean wasCreated;
+        private CustomerCreatedEvent event;
+
+        public boolean CustomerCreatedEventWasHandled() {
+            return this.wasCreated;
+        }
+
+        public CustomerCreatedEvent getDispatchedEvent() {
+            return this.event;
+        }
+
+        @Override
+        public void Dispatch(CustomerCreatedEvent customerCreatedEvent) {
+            this.event = customerCreatedEvent;
+            this.wasCreated = true;
+        }
+
 
     }
 }
