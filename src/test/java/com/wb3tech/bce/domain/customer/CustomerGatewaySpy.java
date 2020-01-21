@@ -2,19 +2,21 @@ package com.wb3tech.bce.domain.customer;
 
 import com.wb3tech.kernel.entity.Identifiable;
 
-class CustomerGatewaySpy implements CustomerGateway {
+public class CustomerGatewaySpy implements CustomerGateway {
 
     private boolean createWasCalled;
     private boolean updateWasCalled;
     private boolean removeWasCalled;
 
-    boolean CreateWasCalled() {
+    public boolean CreateWasCalled() {
         return this.createWasCalled;
     }
-    boolean UpdateWasCalled() {
+
+    public boolean UpdateWasCalled() {
         return this.updateWasCalled;
     }
-    boolean RemoveWasCalled() {
+
+    public boolean RemoveWasCalled() {
         return this.removeWasCalled;
     }
 
